@@ -41,7 +41,7 @@ A Git repository, plain text files, a test runner and an AI agent held to the fo
 - [Architecture as Truth](https://architectureastruth.org/): the standing reference: the definition, the principles, the rules, how to start, the checklist for tool builders, implementations and how to cite
 - [AGENTS.md](https://architectureastruth.org/AGENTS.md): the four rules as an agent instruction file, to copy into a repository
 - [The article](https://www.puglieseweb.com/blog/architecture-as-truth): where the practice was first published, on 5 November 2026
-- [The repository](https://github.com/puglieseweb-personal/architecture-as-truth): the fixed wording, the starter, the two pipeline checks, the checklist, CITATION.cff
+- [The repository](https://github.com/puglieseweb/architecture-as-truth): the fixed wording, the starter, the two pipeline checks, the checklist, CITATION.cff
 
 ## Licence
 
