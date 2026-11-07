@@ -6,7 +6,7 @@
 ## Merged
 | PR | Title |
 |---|---|
-| (this pull request) | Google Analytics measures visits, behind consent |
+| https://github.com/puglieseweb/architecture-as-truth/pull/8 | Google Analytics measures visits, behind consent |
 
 ## What changed
 The reference site loads Google Analytics 4 (property `architectureastruth.org`, measurement ID `G-37RCFT10FC`, enhanced measurement on) in Consent Mode v2, advanced mode. Every storage type starts denied. Until a visitor accepts, Google Analytics sets no cookie and receives only cookieless measurements, which GA4 uses for anonymous, modelled trends. A banner asks once; Accept grants `analytics_storage` only, Decline keeps it denied and deletes any `_ga` cookies. Advertising storage, ad personalisation and Google signals are never enabled. The choice is kept in the browser's local storage, and the footer's "Analytics choice" reopens the banner. The footer no longer says "No cookies, no tracking": it says what is measured, with and without consent. The 404 page loads nothing new.
