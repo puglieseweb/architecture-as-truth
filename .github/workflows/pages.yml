@@ -1,7 +1,9 @@
 name: Site
 
 # Publishes site/ to GitHub Pages at https://architectureastruth.org/.
-# A plain static page: no build step, no framework, no third-party assets.
+# A plain static page: no build step, no framework. The one third-party asset
+# is Google Analytics (gtag.js), in Consent Mode v2 with storage denied until
+# the visitor accepts analytics cookies.
 
 on:
   push:

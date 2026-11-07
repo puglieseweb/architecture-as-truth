@@ -7,6 +7,31 @@
 <meta name="description" content="Architecture as Truth (AAT), set out by Emanuele Pugliese: architecture documents as the single source of truth for people and AI coding agents. Free starter.">
 <meta name="author" content="Emanuele Pugliese">
 <meta name="theme-color" content="#0B1220">
+<script>
+// Google Analytics 4 with Consent Mode v2 (advanced). Every storage type starts
+// denied: until a visitor accepts, GA sets no cookie and sends only cookieless
+// pings, which GA4 uses for anonymous, modelled trends. Accepting grants
+// analytics_storage only; advertising storage is never granted on this site.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+gtag('set', 'ads_data_redaction', true);
+gtag('set', 'url_passthrough', false);
+try {
+  if (localStorage.getItem('aat-analytics-consent') === 'granted') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+  }
+} catch (e) {}
+gtag('js', new Date());
+gtag('config', 'G-37RCFT10FC', { allow_google_signals: false, allow_ad_personalization_signals: false });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-37RCFT10FC"></script>
 <link rel="canonical" href="https://architectureastruth.org/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -278,6 +303,13 @@ th { font: 700 0.75rem/1.4 var(--mono); }
 footer { border-top: 1px solid var(--grid); padding: 2rem 0 3rem; font-size: 0.85rem; line-height: 1.6; }
 footer p { margin: 0.35rem 0; max-width: 46rem; }
 .foot-mark { display: block; margin-bottom: 14px; }
+.linkish { padding: 0; border: 0; background: none; color: var(--signal); font: inherit; text-decoration: underline; cursor: pointer; }
+.consent { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--ink); border-top: 1px solid var(--signal); padding: 1rem 0; font-size: 0.9rem; line-height: 1.5; }
+.consent[hidden] { display: none; }
+body:has(.consent:not([hidden])) { padding-bottom: 9rem; }
+.consent .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
+.consent p { margin: 0; flex: 1 1 28rem; }
+.consent .btns-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 @media (max-width: 1023px) {
   .hero-img { position: static; display: block; height: auto; aspect-ratio: 21 / 9; }
@@ -290,7 +322,7 @@ footer p { margin: 0.35rem 0; max-width: 46rem; }
   ol.principles > li, ol.rules > li { padding-left: 2.5rem; }
 }
 @media print {
-  header.top nav, .btns, .cite button, .hero-img { display: none; }
+  header.top nav, .btns, .cite button, .hero-img, .consent { display: none; }
   body { background: #fff; color: #000; }
   a { color: #000; }
 }
@@ -524,9 +556,20 @@ footer p { margin: 0.35rem 0; max-width: 46rem; }
     <p><strong>Architecture as Truth (AAT)</strong> was set out by <a href="https://www.puglieseweb.com/consulting/emanuele-pugliese">Emanuele Pugliese</a> in 2026.</p>
     <p>Text © 2026 PuglieseWeb LTD, licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>: use it, adapt it and teach it, crediting Emanuele Pugliese. Code under the <a href="https://github.com/puglieseweb/architecture-as-truth/blob/main/LICENSE">Apache License 2.0</a>. The licence gives no right to the PuglieseWeb name or logos.</p>
     <p>Interest declared: the author's company builds <a href="https://www.systemdox.com/architecture-as-truth">SystemDox, one implementation of AAT</a>. Nothing on this site needs it.</p>
-    <p><a href="https://github.com/puglieseweb/architecture-as-truth">Source</a> · <a href="/llms.txt">llms.txt</a> · No cookies, no tracking.</p>
+    <p><a href="https://github.com/puglieseweb/architecture-as-truth">Source</a> · <a href="/llms.txt">llms.txt</a></p>
+    <p>Google Analytics measures visits to this page. Without your consent it sets no cookies and Google receives only anonymous, cookieless measurements, used for overall trends. With your consent it also sets analytics cookies, so returning visits are counted. No advertising cookies, ever. <button type="button" class="linkish" data-consent-open>Analytics choice</button></p>
   </div>
 </footer>
+
+<div class="consent" id="consent" role="region" aria-label="Analytics cookies" hidden>
+  <div class="wrap">
+    <p>May Google Analytics set cookies to count returning visits? Without them it receives only anonymous, cookieless measurements. No advertising cookies.</p>
+    <div class="btns-row">
+      <button type="button" class="btn primary" data-consent="granted">Accept</button>
+      <button type="button" class="btn" data-consent="denied">Decline</button>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -540,6 +583,38 @@ footer p { margin: 0.35rem 0; max-width: 46rem; }
       setTimeout(function () { button.textContent = 'Copy'; }, 1600);
     }, function () {});
   });
+})();
+(function () {
+  var KEY = 'aat-analytics-consent';
+  var banner = document.getElementById('consent');
+  if (!banner) return;
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function clearGaCookies() {
+    var host = location.hostname;
+    var domains = ['', host, '.' + host.split('.').slice(-2).join('.')];
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (name !== '_ga' && name.indexOf('_ga_') !== 0) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
+  }
+  function choose(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+    gtag('consent', 'update', { analytics_storage: value });
+    if (value === 'denied') clearGaCookies();
+    banner.hidden = true;
+  }
+  banner.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-consent]');
+    if (b) choose(b.getAttribute('data-consent'));
+  });
+  document.querySelectorAll('[data-consent-open]').forEach(function (b) {
+    b.addEventListener('click', function () { banner.hidden = false; banner.querySelector('button').focus(); });
+  });
+  var v = stored();
+  if (v !== 'granted' && v !== 'denied') banner.hidden = false;
 })();
 </script>
 </body>
