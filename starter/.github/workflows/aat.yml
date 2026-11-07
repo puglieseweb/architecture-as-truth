@@ -11,7 +11,7 @@ name: Architecture as Truth
 # agent in AGENTS.md; its record is what shows whether it kept them.
 #
 # The checks come from the Architecture as Truth repository at a tagged
-# release: https://github.com/puglieseweb-personal/architecture-as-truth
+# release: https://github.com/puglieseweb/architecture-as-truth
 
 on:
   pull_request:
@@ -30,7 +30,7 @@ jobs:
       - name: Fetch the checks
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          repository: puglieseweb-personal/architecture-as-truth
+          repository: puglieseweb/architecture-as-truth
           ref: v1.0.0
           path: .aat
 
