@@ -15,6 +15,7 @@ AAT is a practice, not a product. It needs a Git repository, plain text files, a
 | [`ARCHITECTURE-AS-TRUTH.md`](ARCHITECTURE-AS-TRUTH.md) | The fixed wording, version 1.0: the definition, the five principles, the four rules for an AI agent. Quote it as it stands. |
 | [`agent/AGENTS.md`](agent/AGENTS.md) | The four rules as an agent instruction file. Copy it into your repository; `agent/CLAUDE.md` imports it for Claude Code. |
 | [`starter/`](starter/) | A starter repository: the four kinds of document as templates with one worked example, the agent file, and a workflow that runs the two checks on every pull request. Try AAT in an hour. |
+| [`guides/many-repositories.md`](guides/many-repositories.md) | The shape for a team whose code lives in many repositories: one decisions repository, and the contracts and behaviours beside the code they are tested against. [`starter-many-repositories/`](starter-many-repositories/) holds its agent files and workflows. |
 | [`checks/`](checks/) | Two pipeline checks, plain Python, no dependencies: `approved_guard.py` (rule 2) and `record_check.py` (rule 4). |
 | [`checklist/TOOL-BUILDERS.md`](checklist/TOOL-BUILDERS.md) | Four questions for the people who build AI coding tools, and how to test each. |
 | [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md) | Tools that implement part of it and teams that practise it, as they report. |

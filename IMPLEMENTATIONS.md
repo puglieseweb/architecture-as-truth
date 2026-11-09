@@ -12,7 +12,7 @@ Architecture as Truth needs no product: a Git repository, plain text files, a te
 
 | Team | Since | Scale | Evidence |
 |---|---|---|---|
-| [PuglieseWeb LTD](https://www.puglieseweb.com) | September 2026 | More than sixty repositories, several products, one owner who approves and AI agents that build | The article: https://www.puglieseweb.com/blog/architecture-as-truth. On 5 November 2026 the decision repository held 226 decision records and 2,975 dated change records since 8 September, each naming the documents it reconciled. |
+| [PuglieseWeb LTD](https://www.puglieseweb.com) | September 2026 | More than sixty repositories, several products, one owner who approves and AI agents that build. One decisions repository for all of them, with the contracts and scenarios beside the code: the shape in [`guides/many-repositories.md`](guides/many-repositories.md) | The article: https://www.puglieseweb.com/blog/architecture-as-truth. On 5 November 2026 the decision repository held 226 decision records and 2,975 dated change records since 8 September, each naming the documents it reconciled. |
 
 Nobody outside the author's company has reported adopting it yet. The first outside team that tries it is worth more than any post: if that is you, open a pull request on this file, or write to the author.
 

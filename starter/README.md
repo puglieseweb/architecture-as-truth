@@ -27,6 +27,8 @@ docs/
 
 A document on the default branch has been approved. The merge was the approval.
 
+This is the shape for one product in one repository. For a team whose code lives in many repositories, see [the guide](../guides/many-repositories.md) and [its starter](../starter-many-repositories/): one decisions repository, and the contracts and behaviours beside the code they are tested against.
+
 ## In an hour
 
 1. **Copy this folder** into a new repository, or `docs/`, `AGENTS.md`, `CLAUDE.md` and the workflow into an existing one. Delete the example feature file and the example record when you have your own.
