@@ -57,9 +57,11 @@ Rule 4 for a code change is checked where the record lives, in the decisions rep
 
 When the decisions move to one place, it becomes easy to stop there: decide in the decisions repository, build in the code repository, and never write the scenario. The decision is true, the build cites it, and nothing proves the behaviour.
 
-We found this in our own repositories on 2026-11-09. One code repository had seven features merged in ten days, each citing an amendment in the decisions repository, and not one feature file. The decisions were kept; the behaviours were not. No check had noticed, because every check we ran looked at structure, not at whether a change that adds behaviour carries its scenarios.
+We found this in our own repositories on 2026-11-09. One code repository had six features merged in five days, each citing an amendment in the decisions repository, and not one feature file. The decisions were kept; the behaviours were not. No check had noticed, because every check we ran looked at structure, not at whether a change that adds behaviour carries its scenarios.
 
 The rule that answers it: **a change that adds behaviour a person can observe carries its scenarios in the repository it changes. A decision alone is not enough.** A pipeline can hold it with a check that a change touching code also touches `docs/behaviours/`, or carries a label a person gave it saying it changes no behaviour (a fix, a refactor, a dependency). The label is a person's, like `amendment`. This starter leaves that check to the team's pipeline. Either way the record makes the gap visible: a record whose code pull requests touched no `.feature` file is a record to read twice.
+
+Measure before you enforce. When we counted, the same day, 110 of 164 feature merges across our repositories in two weeks had changed neither a feature file nor a change's documents. A check that refused them all from the first day would have turned two merges in three red. Ours began by reporting, with one switch per repository to make it refuse.
 
 ## Evidence
 
