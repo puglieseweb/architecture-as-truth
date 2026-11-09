@@ -42,6 +42,7 @@ A Git repository, plain text files, a test runner and an AI agent held to the fo
 - [AGENTS.md](https://architectureastruth.org/AGENTS.md): the four rules as an agent instruction file, to copy into a repository
 - [The article](https://www.puglieseweb.com/blog/architecture-as-truth): where the practice was first published, on 5 November 2026
 - [The repository](https://github.com/puglieseweb/architecture-as-truth): the fixed wording, the starter, the two pipeline checks, the checklist, CITATION.cff
+- [One decisions repository for many code repositories](https://github.com/puglieseweb/architecture-as-truth/blob/main/guides/many-repositories.md): the shape for a team with many repositories: decisions and records in one repository, contracts and behaviours beside the code they are tested against, and the checks for each side
 
 ## Licence
 

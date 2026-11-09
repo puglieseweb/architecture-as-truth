@@ -18,6 +18,8 @@ python checks/record_check.py --root . --require-record origin/main
 
 In CI, see [`starter/.github/workflows/aat.yml`](../starter/.github/workflows/aat.yml): it fetches this repository at a tagged release and runs both on every pull request, passing `--amendment` when the pull request carries the `amendment` label.
 
+Both take the documents' places as options: `approved_guard.py --guard <path>` names what is approved (a directory or a file, repeatable; the default is `docs/contracts/` and `docs/behaviours/`), and `record_check.py --dir <path>` names the records directory (the default is `docs/records`). A team with one decisions repository for many code repositories runs the record check there and the guard in each code repository; see [`guides/many-repositories.md`](../guides/many-repositories.md).
+
 ## Test them
 
 ```sh

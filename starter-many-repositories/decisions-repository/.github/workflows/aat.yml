@@ -1,0 +1,50 @@
+name: Architecture as Truth
+
+# The team's decisions repository: it holds the decisions and the records for
+# every repository the team builds, and no code. Two of the four rules for an
+# AI agent can be enforced by a pipeline, and this workflow enforces them on
+# every pull request here:
+#   rule 4, leave the truth true: every change adds a record naming the
+#           documents it relied on and the pull requests it merged, in every
+#           repository (a change that touches only records is the record of
+#           an earlier change, and passes);
+#   rule 2, build what was approved: a decision on the default branch is
+#           approved, so a change to its text is an amendment, labelled
+#           `amendment` by a person. A new decision is always allowed.
+# The contracts and the behaviours live in the code repositories, each guarded
+# by its own workflow (../../code-repository/.github/workflows/aat.yml).
+#
+# The checks come from the Architecture as Truth repository at a tagged
+# release: https://github.com/puglieseweb/architecture-as-truth
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  truth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+
+      - name: Fetch the checks
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          repository: puglieseweb/architecture-as-truth
+          ref: v1.0.0
+          path: .aat
+
+      - name: "Rule 4: the change names its documents"
+        env:
+          BASE: ${{ github.base_ref }}
+        run: python3 .aat/checks/record_check.py --root . --require-record "origin/$BASE"
+
+      - name: "Rule 2: a decision changes only by a declared amendment"
+        env:
+          AMENDMENT: ${{ contains(github.event.pull_request.labels.*.name, 'amendment') && '--amendment' || '' }}
+          BASE: ${{ github.base_ref }}
+        run: python3 .aat/checks/approved_guard.py --base "origin/$BASE" --head HEAD --guard docs/decisions $AMENDMENT
